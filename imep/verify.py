@@ -128,7 +128,7 @@ def saveverifyfile(filename, vtables, times=None):
     else:
         dates = []
         for t in times:
-            d = LocalDateTime.of(t.year, t.month - 1, t.day, t.hour, t.minute, t.second)
+            d = LocalDateTime.of(t.year, t.month, t.day, t.hour, t.minute, t.second)
             dates.append(d)
         VerifyStat.writeVerifyFile(vtables, dates, filename)
     
