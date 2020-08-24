@@ -4,6 +4,8 @@
  */
 package org.meteothink.imep.forms;
 
+import org.meteoinfo.image.svg.FlatSVGIcon;
+import org.meteoinfo.image.svg.SVGUtil;
 import org.meteothink.imep.global.GenericFileFilter;
 import org.meteothink.imep.global.Globals;
 import org.meteothink.imep.global.Options;
@@ -205,21 +207,24 @@ public class FrmMain extends javax.swing.JFrame {
 
         jLabel_RegionFile.setText("RegionFile:");
 
-        jButton_OutPath.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Folder_1_16x16x8.png"))); // NOI18N
+        //jButton_OutPath.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Folder_1_16x16x8.png"))); // NOI18N
+        jButton_OutPath.setIcon(new FlatSVGIcon("org/meteoinfo/icons/file-open.svg"));
         jButton_OutPath.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 jButton_OutPathActionPerformed(evt);
             }
         });
 
-        jButton_MaskFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Folder_1_16x16x8.png"))); // NOI18N
+        //jButton_MaskFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Folder_1_16x16x8.png"))); // NOI18N
+        jButton_MaskFile.setIcon(new FlatSVGIcon("org/meteoinfo/icons/file-open.svg"));
         jButton_MaskFile.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 jButton_MaskFileActionPerformed(evt);
             }
         });
 
-        jButton_RegionFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Folder_1_16x16x8.png"))); // NOI18N
+        //jButton_RegionFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Folder_1_16x16x8.png"))); // NOI18N
+        jButton_RegionFile.setIcon(new FlatSVGIcon("org/meteoinfo/icons/file-open.svg"));
         jButton_RegionFile.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 jButton_RegionFileActionPerformed(evt);
@@ -258,7 +263,8 @@ public class FrmMain extends javax.swing.JFrame {
 
         jLabel_MaskFile1.setText("FilterFile:");
 
-        jButton_FilterFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Folder_1_16x16x8.png"))); // NOI18N
+        //jButton_FilterFile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Folder_1_16x16x8.png"))); // NOI18N
+        jButton_FilterFile.setIcon(new FlatSVGIcon("org/meteoinfo/icons/file-open.svg"));
         jButton_FilterFile.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 jButton_FilterFileActionPerformed(evt);
@@ -367,7 +373,10 @@ public class FrmMain extends javax.swing.JFrame {
         jToolBar_Main.setFloatable(false);
         jToolBar_Main.setRollover(true);
 
-        jButton_NewVerifyCase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TSB_NewFile.Image.png"))); // NOI18N
+        ClassLoader classLoader = FrmMain.class.getClassLoader();
+
+        //jButton_NewVerifyCase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TSB_NewFile.Image.png"))); // NOI18N
+        jButton_NewVerifyCase.setIcon(new FlatSVGIcon("org/meteothink/imep/icons/file-new.svg", classLoader));
         jButton_NewVerifyCase.setToolTipText("New Verify Case");
         jButton_NewVerifyCase.setFocusable(false);
         jButton_NewVerifyCase.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -379,7 +388,8 @@ public class FrmMain extends javax.swing.JFrame {
         });
         jToolBar_Main.add(jButton_NewVerifyCase);
 
-        jButton_LoadVerifyCase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Folder_1_16x16x8.png"))); // NOI18N
+        //jButton_LoadVerifyCase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Folder_1_16x16x8.png"))); // NOI18N
+        jButton_LoadVerifyCase.setIcon(new FlatSVGIcon("org/meteoinfo/icons/file-open.svg"));
         jButton_LoadVerifyCase.setToolTipText("Open Verify Case");
         jButton_LoadVerifyCase.setFocusable(false);
         jButton_LoadVerifyCase.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -391,7 +401,8 @@ public class FrmMain extends javax.swing.JFrame {
         });
         jToolBar_Main.add(jButton_LoadVerifyCase);
 
-        jButton_SaveVerifyCase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Disk_1_16x16x8.png"))); // NOI18N
+        //jButton_SaveVerifyCase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Disk_1_16x16x8.png"))); // NOI18N
+        jButton_SaveVerifyCase.setIcon(new FlatSVGIcon("org/meteoinfo/icons/file-save.svg"));
         jButton_SaveVerifyCase.setToolTipText("Save Verify Case");
         jButton_SaveVerifyCase.setFocusable(false);
         jButton_SaveVerifyCase.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -404,7 +415,8 @@ public class FrmMain extends javax.swing.JFrame {
         jToolBar_Main.add(jButton_SaveVerifyCase);
         jToolBar_Main.add(jSeparator3);
 
-        jButton_AddGroup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TSB_Add.Image.png"))); // NOI18N
+        //jButton_AddGroup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TSB_Add.Image.png"))); // NOI18N
+        jButton_AddGroup.setIcon(new FlatSVGIcon("org/meteoinfo/icons/add.svg"));
         jButton_AddGroup.setToolTipText("Add Group");
         jButton_AddGroup.setFocusable(false);
         jButton_AddGroup.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -416,7 +428,8 @@ public class FrmMain extends javax.swing.JFrame {
         });
         jToolBar_Main.add(jButton_AddGroup);
 
-        jButton_DeleteGroup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TSB_Del.Image.png"))); // NOI18N
+        //jButton_DeleteGroup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TSB_Del.Image.png"))); // NOI18N
+        jButton_DeleteGroup.setIcon(new FlatSVGIcon("org/meteoinfo/icons/remove.svg"));
         jButton_DeleteGroup.setToolTipText("Delete Group");
         jButton_DeleteGroup.setFocusable(false);
         jButton_DeleteGroup.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -428,7 +441,8 @@ public class FrmMain extends javax.swing.JFrame {
         });
         jToolBar_Main.add(jButton_DeleteGroup);
 
-        jButton_SaveGroup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Save.png"))); // NOI18N
+        //jButton_SaveGroup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Save.png"))); // NOI18N
+        jButton_SaveGroup.setIcon(new FlatSVGIcon("org/meteothink/imep/icons/save-as.svg", classLoader));
         jButton_SaveGroup.setToolTipText("Save Group");
         jButton_SaveGroup.setFocusable(false);
         jButton_SaveGroup.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -441,7 +455,8 @@ public class FrmMain extends javax.swing.JFrame {
         jToolBar_Main.add(jButton_SaveGroup);
         jToolBar_Main.add(jSeparator2);
 
-        jButton_Run.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TSB_RunScript.Image.png"))); // NOI18N
+        //jButton_Run.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TSB_RunScript.Image.png"))); // NOI18N
+        jButton_Run.setIcon(new FlatSVGIcon("org/meteothink/imep/icons/execute.svg", classLoader));
         jButton_Run.setToolTipText("Run Verification");
         jButton_Run.setFocusable(false);
         jButton_Run.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -467,7 +482,8 @@ public class FrmMain extends javax.swing.JFrame {
 
         jMenu_VerifyCase.setText("Case");
 
-        jMenuItem_NewCase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TSB_NewFile.Image.png"))); // NOI18N
+        //jMenuItem_NewCase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TSB_NewFile.Image.png"))); // NOI18N
+        jMenuItem_NewCase.setIcon(new FlatSVGIcon("org/meteothink/imep/icons/file-new.svg", classLoader));
         jMenuItem_NewCase.setText("New Case");
         jMenuItem_NewCase.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -476,7 +492,8 @@ public class FrmMain extends javax.swing.JFrame {
         });
         jMenu_VerifyCase.add(jMenuItem_NewCase);
 
-        jMenuItem_OpenCase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Folder_1_16x16x8.png"))); // NOI18N
+        //jMenuItem_OpenCase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Folder_1_16x16x8.png"))); // NOI18N
+        jMenuItem_OpenCase.setIcon(new FlatSVGIcon("org/meteoinfo/icons/file-open.svg"));
         jMenuItem_OpenCase.setText("Open Case");
         jMenuItem_OpenCase.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -485,7 +502,8 @@ public class FrmMain extends javax.swing.JFrame {
         });
         jMenu_VerifyCase.add(jMenuItem_OpenCase);
 
-        jMenuItem_SaveCase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Disk_1_16x16x8.png"))); // NOI18N
+        //jMenuItem_SaveCase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Disk_1_16x16x8.png"))); // NOI18N
+        jMenuItem_SaveCase.setIcon(new FlatSVGIcon("org/meteoinfo/icons/file-save.svg"));
         jMenuItem_SaveCase.setText("Save Case");
         jMenuItem_SaveCase.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {

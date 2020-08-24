@@ -60,28 +60,28 @@ public class FrmAbout extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("宋体", 1, 18)); // NOI18N
         jLabel2.setText("IMEP");
 
-        jLabel3.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
+        //jLabel3.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
         jLabel3.setText("Integrated Model Evaluation Platform");
 
-        jLabel4.setFont(new java.awt.Font("宋体", 1, 15)); // NOI18N
+        //jLabel4.setFont(new java.awt.Font("宋体", 1, 15)); // NOI18N
         jLabel4.setText("Version:");
 
-        jLabel5.setFont(new java.awt.Font("宋体", 1, 15)); // NOI18N
+        //jLabel5.setFont(new java.awt.Font("宋体", 1, 15)); // NOI18N
         jLabel5.setText("Author:");
 
         jLabel6.setText("Yaqiang Wang");
 
-        jLabel7.setText("0.6");
+        jLabel7.setText("0.7");
 
-        jLabel8.setFont(new java.awt.Font("宋体", 1, 15)); // NOI18N
+        //jLabel8.setFont(new java.awt.Font("宋体", 1, 15)); // NOI18N
         jLabel8.setText("Email:");
 
         jLabel9.setText("yaqiang.wang@gmail.com");
 
-        jLabel10.setFont(new java.awt.Font("宋体", 1, 15)); // NOI18N
+        //jLabel10.setFont(new java.awt.Font("宋体", 1, 15)); // NOI18N
         jLabel10.setText("Homepage:");
 
-        jLabel11.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel11.setForeground(new java.awt.Color(0, 153, 204));
         jLabel11.setText("htt://www.meteothink.org");
         jLabel11.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
