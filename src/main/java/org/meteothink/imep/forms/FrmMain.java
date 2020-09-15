@@ -4,15 +4,20 @@
  */
 package org.meteothink.imep.forms;
 
-import org.meteoinfo.image.svg.FlatSVGIcon;
-import org.meteoinfo.image.svg.SVGUtil;
+import com.formdev.flatlaf.extras.FlatSVGIcon;
+import org.meteoinfo.global.util.GlobalUtil;
 import org.meteothink.imep.global.GenericFileFilter;
 import org.meteothink.imep.global.Globals;
 import org.meteothink.imep.global.Options;
 import org.meteothink.imep.verification.StatType;
 import org.meteothink.imep.verification.VerifyCase;
 import org.meteothink.imep.verification.VerifyGroup;
-import java.awt.Cursor;
+import org.xml.sax.SAXException;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import javax.xml.parsers.ParserConfigurationException;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -21,15 +26,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.DefaultListModel;
-import javax.swing.JFileChooser;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPopupMenu;
-import javax.xml.parsers.ParserConfigurationException;
-import org.meteoinfo.global.util.GlobalUtil;
-import org.xml.sax.SAXException;
 
 /**
  *
