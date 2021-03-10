@@ -13,44 +13,29 @@
  */
 package org.meteothink.imep.verification;
 
-import org.meteothink.imep.global.Globals;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.text.ParseException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.meteoinfo.data.GridData;
-import org.meteoinfo.data.StationData;
-import org.meteoinfo.data.mapdata.MapDataManage;
-import org.meteoinfo.data.meteodata.GridDataSetting;
-import org.meteoinfo.geoprocess.analysis.InterpolationMethods;
-import org.meteoinfo.geoprocess.analysis.InterpolationSetting;
-import org.meteoinfo.data.meteodata.MeteoDataInfo;
-import org.meteoinfo.data.meteodata.Variable;
-import org.meteoinfo.data.meteodata.grads.GrADSDataInfo;
-import org.meteoinfo.layer.VectorLayer;
-import org.meteoinfo.shape.PolygonShape;
-import org.w3c.dom.Attr;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+ import org.meteoinfo.data.GridData;
+ import org.meteoinfo.data.StationData;
+ import org.meteoinfo.geo.mapdata.MapDataManage;
+ import org.meteoinfo.data.GridDataSetting;
+ import org.meteoinfo.data.meteodata.MeteoDataInfo;
+ import org.meteoinfo.data.meteodata.Variable;
+ import org.meteoinfo.data.meteodata.grads.GrADSDataInfo;
+ import org.meteoinfo.geo.analysis.InterpolationMethods;
+ import org.meteoinfo.geo.analysis.InterpolationSetting;
+ import org.meteoinfo.geo.layer.VectorLayer;
+ import org.meteoinfo.geo.util.GeoMathUtil;
+ import org.meteoinfo.geometry.shape.PolygonShape;
+ import org.meteothink.imep.global.Globals;
+ import org.w3c.dom.*;
 
-/**
+ import java.io.*;
+ import java.time.LocalDateTime;
+ import java.time.format.DateTimeFormatter;
+ import java.util.*;
+ import java.util.logging.Level;
+ import java.util.logging.Logger;
+
+ /**
  *
  * @author yaqiang
  */
@@ -886,7 +871,7 @@ public class VerifyGroup implements Cloneable {
             VectorLayer maskLayer;
             try {
                 maskLayer = (VectorLayer) MapDataManage.loadLayer(this._dataMaskFile);
-                od = od.maskout((PolygonShape) maskLayer.getShapes().get(0));
+                od = GeoMathUtil.maskout(od, (PolygonShape) maskLayer.getShapes().get(0));
             } catch (IOException ex) {
                 Logger.getLogger(VerifyGroup.class.getName()).log(Level.SEVERE, null, ex);
             } catch (Exception ex) {
@@ -915,7 +900,7 @@ public class VerifyGroup implements Cloneable {
             VectorLayer maskLayer;
             try {
                 maskLayer = (VectorLayer) MapDataManage.loadLayer(this._dataMaskFile);
-                od = od.maskout((PolygonShape) maskLayer.getShapes().get(0));
+                od = GeoMathUtil.maskout(od, (PolygonShape) maskLayer.getShapes().get(0));
             } catch (IOException ex) {
                 Logger.getLogger(VerifyGroup.class.getName()).log(Level.SEVERE, null, ex);
             } catch (Exception ex) {
@@ -933,8 +918,8 @@ public class VerifyGroup implements Cloneable {
                     String tName = maskLayer.getCellValue("NAME", i).toString();
                     if (tName.equals(region)) {
                         PolygonShape polygonShape = (PolygonShape) maskLayer.getShapes().get(i);
-                        StationData maskObsData = od.maskout(polygonShape);
-                        StationData maskFcstData = fds.maskout(polygonShape);
+                        StationData maskObsData = GeoMathUtil.maskout(od, polygonShape);
+                        StationData maskFcstData = GeoMathUtil.maskout(fds, polygonShape);
                         return new StationData[]{maskObsData, maskFcstData};
                     }
                 }
@@ -979,7 +964,7 @@ public class VerifyGroup implements Cloneable {
             VectorLayer maskLayer;
             try {
                 maskLayer = (VectorLayer) MapDataManage.loadLayer(this._dataMaskFile);
-                obsData = obsData.maskout((PolygonShape) maskLayer.getShapes().get(0));
+                obsData = GeoMathUtil.maskout(obsData, (PolygonShape) maskLayer.getShapes().get(0));
             } catch (IOException ex) {
                 Logger.getLogger(VerifyGroup.class.getName()).log(Level.SEVERE, null, ex);
             } catch (Exception ex) {
@@ -1005,8 +990,8 @@ public class VerifyGroup implements Cloneable {
                         VectorLayer regionLayer = (VectorLayer) MapDataManage.loadLayer(this._statRegionFile);
                         for (int i = 0; i < regionLayer.getShapeNum(); i++) {
                             PolygonShape polygonShape = (PolygonShape) regionLayer.getShapes().get(i);
-                            StationData maskObsData = obsData.maskout(polygonShape);
-                            StationData maskFcstData = fstData.maskout(polygonShape);
+                            StationData maskObsData = GeoMathUtil.maskout(obsData, polygonShape);
+                            StationData maskFcstData = GeoMathUtil.maskout(fstData, polygonShape);
                             table = VerifyStat.getVerifyTable(maskObsData, maskFcstData, _verifyMethod);
                             String tName = regionLayer.getCellValue("NAME", i).toString();
                             table.setName(tName);
@@ -1052,7 +1037,7 @@ public class VerifyGroup implements Cloneable {
                 interSet.setInterpolationMethod(InterpolationMethods.IDW_Neighbors);
                 interSet.setMinPointNum(9);
                 interSet.setMissingValue(obsData.missingValue);
-                GridData ogridData = obsData.interpolateData(interSet);
+                GridData ogridData = GeoMathUtil.interpolateData(obsData, interSet);
 
                 //Get verify table
                 tables = new ArrayList<>();
@@ -1064,8 +1049,8 @@ public class VerifyGroup implements Cloneable {
                         VectorLayer maskLayer = (VectorLayer) MapDataManage.loadLayer(this._statRegionFile);
                         for (int i = 0; i < maskLayer.getShapeNum(); i++) {
                             PolygonShape polygonShape = (PolygonShape) maskLayer.getShapes().get(i);
-                            GridData maskObsData = ogridData.maskout(polygonShape);
-                            GridData maskFcstData = fcstData.maskout(polygonShape);
+                            GridData maskObsData = GeoMathUtil.maskout(ogridData, polygonShape);
+                            GridData maskFcstData = GeoMathUtil.maskout(fcstData, polygonShape);
                             table = VerifyStat.getVerifyTable(maskObsData, maskFcstData, _verifyMethod);
                             table.setName("Mask_" + String.valueOf(i));
                             tables.add(table);

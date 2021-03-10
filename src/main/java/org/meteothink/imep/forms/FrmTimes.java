@@ -6,16 +6,15 @@ package org.meteothink.imep.forms;
 
 import org.meteothink.imep.verification.TimeSelect;
 import org.meteothink.imep.verification.VerifyGroup;
-import java.awt.Cursor;
-import java.text.ParseException;
+
+import javax.swing.*;
+import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
-import javax.swing.JOptionPane;
 
 /**
  *

@@ -1,4 +1,4 @@
-from org.meteoinfo.plugin import PluginBase, IApplication
+from org.meteoinfo.ui.plugin import PluginBase, IApplication
 from javax.swing import JFrame, JMenuItem
 import inspect
 import os

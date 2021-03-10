@@ -17,7 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.meteoinfo.data.GridData;
 import org.meteoinfo.data.StationData;
-import org.meteoinfo.global.MIMath;
+import org.meteoinfo.common.MIMath;
 import org.meteoinfo.ndarray.Array;
 import org.meteoinfo.ndarray.DataType;
 

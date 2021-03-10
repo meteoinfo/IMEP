@@ -15,8 +15,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.WindowConstants;
-import org.meteoinfo.plugin.IApplication;
-import org.meteoinfo.plugin.PluginBase;
+import org.meteoinfo.ui.plugin.IApplication;
+import org.meteoinfo.ui.plugin.PluginBase;
 
 /**
  *

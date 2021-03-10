@@ -5,14 +5,10 @@
 package org.meteothink.imep;
 
 import org.meteothink.imep.forms.FrmMain;
-import java.awt.GraphicsEnvironment;
-import java.io.File;
+
+import javax.swing.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.WindowConstants;
-import org.meteoinfo.global.util.GlobalUtil;
 
 /**
  *

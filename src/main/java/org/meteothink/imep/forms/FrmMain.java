@@ -5,7 +5,7 @@
 package org.meteothink.imep.forms;
 
 import com.formdev.flatlaf.extras.FlatSVGIcon;
-import org.meteoinfo.global.util.GlobalUtil;
+import org.meteoinfo.common.util.GlobalUtil;
 import org.meteothink.imep.global.GenericFileFilter;
 import org.meteothink.imep.global.Globals;
 import org.meteothink.imep.global.Options;
