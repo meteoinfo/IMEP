@@ -10,7 +10,7 @@ class LoadApp(PluginBase):
     def __init__(self):
         self.setName("IMEP")
         self.setAuthor("Yaqiang Wang")
-        self.setVersion("0.6")
+        self.setVersion("0.8")
         self.setDescription("IMEP - Verification application")
         self.appMI = None
         

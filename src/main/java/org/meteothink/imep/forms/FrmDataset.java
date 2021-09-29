@@ -220,8 +220,8 @@ public class FrmDataset extends javax.swing.JDialog {
     
     private void updateMeteoDataType(MeteoDataType mdt) {
         switch (mdt) {
-            case GrADS_Grid:
-            case GrADS_Station:
+            case GRADS_GRID:
+            case GRADS_STATION:
                 this.jCheckBox_BigEndian.setVisible(true);
                 break;
             default:

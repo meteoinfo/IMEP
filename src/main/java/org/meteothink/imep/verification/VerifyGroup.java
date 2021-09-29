@@ -765,11 +765,11 @@ public class VerifyGroup implements Cloneable {
                                 aDataInfo.XDEF.Type = "LINEAR";
                                 aDataInfo.XDEF.XNum = gData.getXNum();
                                 aDataInfo.XDEF.XMin = (float) gData.getExtent().minX;
-                                aDataInfo.XDEF.XDelt = (float) gData.getXDelt();
+                                aDataInfo.XDEF.XDelt = (float) gData.getXDelta();
                                 aDataInfo.YDEF.Type = "LINEAR";
                                 aDataInfo.YDEF.YNum = gData.getYNum();
                                 aDataInfo.YDEF.YMin = (float) gData.getExtent().minY;
-                                aDataInfo.YDEF.YDelt = (float) gData.getYDelt();
+                                aDataInfo.YDEF.YDelt = (float) gData.getYDelta();
                             }
                             aDataInfo.writeGridData(gData);
                             n += 1;
@@ -1034,7 +1034,7 @@ public class VerifyGroup implements Cloneable {
                 GridDataSetting gDataSet = fcstData.getGridDataSetting();
                 InterpolationSetting interSet = new InterpolationSetting();
                 interSet.setGridDataSetting(gDataSet);
-                interSet.setInterpolationMethod(InterpolationMethods.IDW_Neighbors);
+                interSet.setInterpolationMethod(InterpolationMethods.IDW_NEIGHBORS);
                 interSet.setMinPointNum(9);
                 interSet.setMissingValue(obsData.missingValue);
                 GridData ogridData = GeoMathUtil.interpolateData(obsData, interSet);

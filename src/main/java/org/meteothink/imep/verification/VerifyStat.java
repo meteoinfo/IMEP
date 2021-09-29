@@ -47,13 +47,13 @@ public class VerifyStat {
                 DataRange dataRange = dMethod.getDataRange();
                 for (int i = 0; i < ynum; i++) {
                     for (int j = 0; j < xnum; j++) {
-                        if (MIMath.doubleEquals(obsData.data[i][j], obsData.missingValue)) {
+                        if (MIMath.doubleEquals(obsData.getDoubleValue(i, j), obsData.getDoubleMissingValue())) {
                             value = 0;
-                        } else if (MIMath.doubleEquals(fcstData.data[i][j], value)) {
+                        } else if (MIMath.doubleEquals(fcstData.getDoubleValue(i, j), value)) {
                             value = 0;
                         } else {
-                            bobs = dataRange.isValueIn(obsData.data[i][j]);
-                            bfcst = dataRange.isValueIn(fcstData.data[i][j]);
+                            bobs = dataRange.isValueIn(obsData.getDoubleValue(i, j));
+                            bfcst = dataRange.isValueIn(fcstData.getDoubleValue(i, j));
                             if (bobs && bfcst) {
                                 value = 1;
                             } else if (bobs == true && bfcst == false) {
@@ -63,7 +63,7 @@ public class VerifyStat {
                             } else {
                                 value = 4;
                             }
-                            veriData.data[i][j] = value;
+                            veriData.setValue(i, j, value);
                         }
                     }
                 }
@@ -90,17 +90,17 @@ public class VerifyStat {
         boolean bobs, bfcst;
         for (int i = 0; i < ynum; i++) {
             for (int j = 0; j < xnum; j++) {
-                if (MIMath.doubleEquals(obsData.data[i][j], obsData.missingValue)) {
+                if (MIMath.doubleEquals(obsData.getDoubleValue(i, j), obsData.getDoubleMissingValue())) {
                     value = 0;
-                } else if (MIMath.doubleEquals(fcstData.data[i][j], value)) {
+                } else if (MIMath.doubleEquals(fcstData.getDoubleValue(i, j), value)) {
                     value = 0;
                 } else {
                     if (isBigger) {
-                        bobs = obsData.data[i][j] >= threshold;
-                        bfcst = fcstData.data[i][j] >= threshold;
+                        bobs = obsData.getDoubleValue(i, j) >= threshold;
+                        bfcst = fcstData.getDoubleValue(i, j) >= threshold;
                     } else {
-                        bobs = obsData.data[i][j] <= threshold;
-                        bfcst = fcstData.data[i][j] <= threshold;
+                        bobs = obsData.getDoubleValue(i, j) <= threshold;
+                        bfcst = fcstData.getDoubleValue(i, j) <= threshold;
                     }
 
                     if (bobs && bfcst) {
@@ -112,7 +112,7 @@ public class VerifyStat {
                     } else {
                         value = 4;
                     }
-                    veriData.data[i][j] = value;
+                    veriData.setValue(i, j, value);
                 }
             }
         }
@@ -129,6 +129,9 @@ public class VerifyStat {
      * @return Categorical result data
      */
     public static Array categorical(Array obsData, Array fcstData, VerifyMethod method) {
+        obsData = obsData.copyIfView();
+        fcstData = fcstData.copyIfView();
+
         DichotomousMethod dMethod = (DichotomousMethod) method;
         DataRange dataRange = dMethod.getDataRange();
         return categorical(obsData, fcstData, dataRange);
@@ -143,6 +146,9 @@ public class VerifyStat {
      * @return Categorical result data
      */
     public static Array categorical(Array obsData, Array fcstData, DataRange dataRange) {
+        obsData = obsData.copyIfView();
+        fcstData = fcstData.copyIfView();
+
         Array cateData = Array.factory(DataType.INT, obsData.getShape());
         long stnum = obsData.getSize();
         double v_obs, v_fcst;
@@ -316,7 +322,7 @@ public class VerifyStat {
         ContingencyTable outData = new ContingencyTable();
         for (int i = 0; i < veriData.getYNum(); i++) {
             for (int j = 0; j < veriData.getXNum(); j++) {
-                switch ((int) veriData.data[i][j]) {
+                switch (veriData.getValue(i, j).intValue()) {
                     case 1:
                         outData.hit += 1;
                         break;
@@ -469,6 +475,9 @@ public class VerifyStat {
      * @return Verify table
      */
     public static VerifyTable getVerifyTable(Array obsData, Array fcstData, VerifyMethod method) {
+        obsData = obsData.copyIfView();
+        fcstData = fcstData.copyIfView();
+
         VerifyTable table = null;
         switch (method.getMethodType()) {
             case DICHOTOMOUS:
@@ -553,12 +562,12 @@ public class VerifyStat {
                 int[][] mvalues = new int[vnum][vnum];
                 for (int m = 0; m < ynum; m++) {
                     for (int n = 0; n < xnum; n++) {
-                        obsValue = obsData.data[m][n];
-                        fcstValue = fcstData.data[m][n];
-                        if (MIMath.doubleEquals(obsValue, obsData.missingValue)) {
+                        obsValue = obsData.getDoubleValue(m, n);
+                        fcstValue = fcstData.getDoubleValue(m, n);
+                        if (MIMath.doubleEquals(obsValue, obsData.getDoubleMissingValue())) {
                             continue;
                         }
-                        if (MIMath.doubleEquals(fcstValue, fcstData.missingValue)) {
+                        if (MIMath.doubleEquals(fcstValue, fcstData.getDoubleMissingValue())) {
                             continue;
                         }
                         for (int k = 0; k < vnum; k++) {
@@ -598,12 +607,12 @@ public class VerifyStat {
                 List<Double> fcstValues = new ArrayList<>();
                 for (int m = 0; m < ynum; m++) {
                     for (int n = 0; n < xnum; n++) {
-                        obsValue = obsData.data[m][n];
-                        fcstValue = fcstData.data[m][n];
-                        if (MIMath.doubleEquals(obsValue, obsData.missingValue)) {
+                        obsValue = obsData.getDoubleValue(m, n);
+                        fcstValue = fcstData.getDoubleValue(m, n);
+                        if (MIMath.doubleEquals(obsValue, obsData.getDoubleMissingValue())) {
                             continue;
                         }
-                        if (MIMath.doubleEquals(fcstValue, fcstData.missingValue)) {
+                        if (MIMath.doubleEquals(fcstValue, fcstData.getDoubleMissingValue())) {
                             continue;
                         }
                         obsValues.add(obsValue);

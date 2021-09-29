@@ -6,7 +6,7 @@
 
     <groupId>org.meteothink</groupId>
     <artifactId>imep</artifactId>
-    <version>0.7.1</version>
+    <version>0.8</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -21,22 +21,12 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>meteoinfo-geo</artifactId>
-            <version>3.0.0</version>
+            <version>3.1.6</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>meteoinfo-ui</artifactId>
-            <version>3.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.formdev</groupId>
-            <artifactId>flatlaf</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.formdev</groupId>
-            <artifactId>flatlaf-extras</artifactId>
-            <version>1.0</version>
+            <version>3.1.6</version>
         </dependency>
     </dependencies>
 

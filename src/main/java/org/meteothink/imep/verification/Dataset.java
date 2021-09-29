@@ -20,7 +20,6 @@ import java.time.format.DateTimeFormatter;
 
 import org.meteoinfo.data.meteodata.MeteoDataInfo;
 import org.meteoinfo.data.meteodata.MeteoDataType;
-import static org.meteoinfo.data.meteodata.MeteoDataType.GrADS_Grid;
 import org.meteoinfo.data.meteodata.grads.GrADSDataInfo;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
@@ -36,7 +35,7 @@ public class Dataset implements Cloneable {
 
     private String _name;
     private DataSourceType _dataSource = DataSourceType.Observation;
-    private MeteoDataType _meteoDataType = MeteoDataType.NetCDF;
+    private MeteoDataType _meteoDataType = MeteoDataType.NETCDF;
     private String _varName;
     private int levelIndex = 0;
     private String _fileName;
@@ -260,11 +259,11 @@ public class Dataset implements Cloneable {
     public MeteoDataInfo openData() {
         MeteoDataInfo mdi = new MeteoDataInfo();
         switch (this._meteoDataType) {
-            case GrADS_Grid:                
+            case GRADS_GRID:
                 mdi.openGrADSData(this._fileName);
                 ((GrADSDataInfo)mdi.getDataInfo()).setBigEndian(bigEndian);
                 return mdi;
-            case NetCDF:
+            case NETCDF:
             case GRIB1:
             case GRIB2:
                 mdi.openNetCDFData(_fileName);
